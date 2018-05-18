@@ -24,11 +24,16 @@ import pdb
 
 from preprocess_data import read_data
 
+'''
+!!!the KTH dataset may have 599 files,I add one duplicate video
+in the folder having 99 images
+'''
 X_tr = read_data()
-X_train = np.array(X_tr)   # convert the frames read into array
-num_samples = len(X_train)#600，the KTH dataset has 599 files,add one image in the folder having 99 images
+X_train = np.array(X_tr)#convert the frames read into array
+num_samples = len(X_train)#600
+
 label=np.ones((num_samples,), dtype = int)
-#pdb.set_trace()
+#each class has 100 videos
 label[0:100] = 0
 label[100:200] = 1
 label[200:300] = 2
