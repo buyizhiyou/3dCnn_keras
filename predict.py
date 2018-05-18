@@ -8,7 +8,7 @@ from keras.models import Sequential, load_model
 
 actions = ['boxing','handclapping','handwaving','jogging','running','walking']
 
-model_path = './models/2018-05-18 10:06:35-model.h5'
+model_path = './models/2018-05-18 10:44:10-model.h5'
 if os.path.exists(model_path):
     model = load_model(model_path)#load model
     print("**************************************************")

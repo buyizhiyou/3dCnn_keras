@@ -38,9 +38,9 @@ label[400:500]= 4
 label[500:] = 5
 y_train = label
 
-# 599 num_samples, 16,16,15 shape
+#600 num_samples
 img_rows,img_cols,img_depth=32,32,15
-print('X_Train shape:', X_train.shape)#(599, 16, 16, 15)
+print('X_Train shape:', X_train.shape)#(600, 32, 32, 15)
 train_set = np.zeros((num_samples, img_rows, img_cols, img_depth, 1))
 
 for h in range(num_samples):
@@ -62,15 +62,11 @@ nb_filters = [  32,   # 1st conv layer
 nb_pool = [3, 3]
 # level of convolution to perform at each layer (CONV x CONV)
 nb_conv = [5,5]
-# Pre-processing
-train_set = train_set.astype('float32')
-train_set -= np.mean(train_set)
-train_set /= np.max(train_set)
 
-
+#Define optimizer
 RMSprob = RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
-# Define model
-model_path = './models/2018-05-18 09:41:17-model.h5'
+#Load or Define model
+model_path = './models/2018-05-18 10:41:36-model.h5'
 if os.path.exists(model_path):
     model = load_model(model_path)
     print("**************************************************")
