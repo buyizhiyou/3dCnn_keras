@@ -5,9 +5,13 @@ import cv2
 import numpy as np
 
 def read_data():
+    '''
+    read training data from KTH dataset
+    '''
    
-    img_rows,img_cols,img_depth=32,32,15
+    img_rows,img_cols,img_depth=32,32,15#resize parameters
     X_tr=[] 
+
     #Reading boxing action class
     listing = os.listdir('./kth-dataset/boxing')
     for vid in listing:
