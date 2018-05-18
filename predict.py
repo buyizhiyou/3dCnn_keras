@@ -41,8 +41,8 @@ for f in files:
 	inputs=np.array(frames)
 	ipt=np.rollaxis(np.rollaxis(inputs,2,0),2,0)
 	X_tr.append(ipt)
+	
 X_test = np.array(X_tr)
-#pdb.set_trace()
 test_set = np.zeros((nb_files, img_rows, img_cols, img_depth, 1))
 for i in range(nb_files):
 	test_set[i,:,:,:,0]=X_test[i,:,:,:]

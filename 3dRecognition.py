@@ -26,8 +26,7 @@ from preprocess_data import read_data
 
 X_tr = read_data()
 X_train = np.array(X_tr)   # convert the frames read into array
-num_samples = len(X_train)#600
-# Assign Label to each class (label is a 1-D array of 0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3, etc)
+num_samples = len(X_train)#600，the KTH dataset has 599 files,add one image in the folder having 99 images
 label=np.ones((num_samples,), dtype = int)
 #pdb.set_trace()
 label[0:100] = 0
@@ -73,6 +72,9 @@ if os.path.exists(model_path):
     print("model loaded")
 
 else:
+    '''
+    build a simple model
+    '''
     model = Sequential()
     print('input shape', img_rows, 'rows', img_cols, 'cols', patch_size, 'patchsize')
     model.add(Conv3D(nb_filters[0],(5,5,5),input_shape=(img_rows, img_cols,patch_size,1),activation='relu'))
@@ -85,7 +87,9 @@ else:
     model.add(Dense(nb_classes))
     model.add(Activation('softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='RMSprop', metrics=['mse', 'accuracy'])
-model.summary()
+    
+    model.summary()#print the model
+
 # Split the data
 X_train_new, X_val_new, y_train_new,y_val_new = train_test_split(train_set, Y_train, test_size=0.2, random_state=4)
 # Train the model
