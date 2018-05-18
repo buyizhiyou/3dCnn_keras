@@ -1,6 +1,6 @@
 #-*-coding:utf8-*-
 
-# Source: http://learnandshare645.blogspot.hk/2016/06/3d-cnn-in-keras-action-recognition.html
+# Source: http://learnandshare325.blogspot.hk/2032/06/3d-cnn-in-keras-action-recognition.html
 
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential, load_model
@@ -60,12 +60,13 @@ nb_epoch = 50
 Y_train = np_utils.to_categorical(y_train, nb_classes)
 # number of convolutional filters to use at each layer
 nb_filters = [  32,   # 1st conv layer
-                64    # 2nd
+                32    # 2nd
              ]
-# level of pooling to perform at each layer (POOL x POOL)
-nb_pool = [3, 3]
-# level of convolution to perform at each layer (CONV x CONV)
-nb_conv = [5,5]
+
+# Pre-processing
+train_set = train_set.astype('float32')
+train_set -= np.mean(train_set)
+train_set /= np.max(train_set)
 
 #Define optimizer
 RMSprob = RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
@@ -85,7 +86,7 @@ else:
     model = Sequential()
     print('input shape', img_rows, 'rows', img_cols, 'cols', patch_size, 'patchsize')
     model.add(Conv3D(nb_filters[0],(5,5,5),input_shape=(img_rows, img_cols,patch_size,1),activation='relu'))
-    model.add(MaxPooling3D(pool_size=(nb_pool[0], nb_pool[0], nb_pool[0])))
+    model.add(MaxPooling3D(pool_size=(3, 3, 3)))
     model.add(BatchNormalization(momentum=0.99))
     model.add(Conv3D(nb_filters[1],(3,3,3),activation='relu'))
     model.add(Flatten())
