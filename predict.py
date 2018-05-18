@@ -47,7 +47,7 @@ X_test = np.array(X_tr)
 test_set = np.zeros((nb_files, img_rows, img_cols, img_depth, 1))
 for i in range(nb_files):
 	test_set[i,:,:,:,0]=X_test[i,:,:,:]
-# Pre-processing
+# Pre-processing,nomalization
 test_set = test_set.astype('float32')
 test_set -= np.mean(test_set)
 test_set /= np.max(test_set)

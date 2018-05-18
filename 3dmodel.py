@@ -63,7 +63,7 @@ nb_filters = [  32,   # 1st conv layer
                 32    # 2nd
              ]
 
-# Pre-processing
+# Pre-processing,nomalization,can get better accu!
 train_set = train_set.astype('float32')
 train_set -= np.mean(train_set)
 train_set /= np.max(train_set)
