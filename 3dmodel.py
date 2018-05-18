@@ -73,7 +73,9 @@ if os.path.exists(model_path):
 
 else:
     '''
-    build a simple model
+    build a simple model just to show the way of using 3d Conv in Keras.
+    How to build a better model???
+    How to tune parameters???
     '''
     model = Sequential()
     print('input shape', img_rows, 'rows', img_cols, 'cols', patch_size, 'patchsize')
